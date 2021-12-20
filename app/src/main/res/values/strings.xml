@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MVVM_Compose</string>
+    <string name="home_description_top"> "Choose a start date and end date to see the images taken by NASA with a small description"</string>
 </resources>

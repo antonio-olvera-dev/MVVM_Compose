@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                     }
                 ) {
                     NavHost(navController = Navigate.navController, startDestination = "home") {
-                        composable("home") { HomeView() }
+                        composable("home") { HomeView(ctx = applicationContext) }
                     }
                 }
             }
