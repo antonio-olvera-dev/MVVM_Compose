@@ -64,7 +64,7 @@ private class HomeComponents(val ctx: Context) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
-                ButtonDate(title = "Start date",
+                ButtonDate(title = res.getString(R.string.home_button1),
                     value = "1995-06-19",
                     action = {
                         Log.i("11111", "1111")
@@ -72,7 +72,7 @@ private class HomeComponents(val ctx: Context) {
 
                 Spacer(modifier = Modifier.padding(end = 40.dp))
 
-                ButtonDate(title = "Ending date",
+                ButtonDate(title = res.getString(R.string.home_button2),
                     value = "1995-07-19",
                     action = {
                         Log.i("22222", "2222")
@@ -116,7 +116,7 @@ private class HomeComponents(val ctx: Context) {
         Spacer(modifier = Modifier.padding(top = 80.dp))
         Image(
             painter = image,
-            contentDescription = "Icon of a rocket",
+            contentDescription = res.getString(R.string.home_rocket_description),
             modifier = Modifier.clickable { action() }
         )
     }
@@ -127,7 +127,7 @@ private class HomeComponents(val ctx: Context) {
             modifier = modifier
         ) {
             Spacer(modifier = Modifier.padding(top = 10.dp))
-            Text(text = res.getString(R.string.home_description_top))
+            Text(text = res.getString(R.string.home_description_bottom))
             Spacer(modifier = Modifier.padding(bottom = 10.dp))
         }
     }

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">MVVM_Compose</string>
     <string name="home_description_top"> "Choose a start date and end date to see the images taken by NASA with a small description"</string>
+    <string name="home_button1"> "Start date"</string>
+    <string name="home_button2"> "Ending date"</string>
+    <string name="home_rocket_description"> "Icon of a rocket"</string>
+    <string name="home_description_bottom"> "Remember that if you choose very distant dates the process could take several seconds. I recommended  that you try from  month  to month"</string>
 </resources>
