@@ -1,5 +1,7 @@
+import android.app.DatePickerDialog
 import android.content.Context
-import android.util.Log
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,16 +17,27 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.toni.mvvm_compose.R
 import com.toni.mvvm_compose.shared.helpers.ResourcesHelper
+import com.toni.mvvm_compose.ui.home.controler.HomeController
 import com.toni.mvvm_compose.ui.home.viewModel.HomeViewModel
 
+
+@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun HomeView(ctx: Context, homeViewModel: HomeViewModel) {
     HomeComponents(ctx = ctx, homeViewModel = homeViewModel).Body()
 }
 
+@RequiresApi(Build.VERSION_CODES.N)
 private class HomeComponents(val ctx: Context, val homeViewModel: HomeViewModel) {
 
     private val res = ResourcesHelper(ctx = ctx)
+    private var controller: HomeController = HomeController()
+    private var calendar: DatePickerDialog
+
+    init {
+        calendar = controller.getDatePickerDialog(ctx, homeViewModel.articleGetRequest.value!!)
+        controller.launchDateListener(calendar = calendar, homeViewModel = homeViewModel)
+    }
 
     @Composable
     fun Body() {
@@ -36,6 +49,7 @@ private class HomeComponents(val ctx: Context, val homeViewModel: HomeViewModel)
             DescriptionTop(modifier = Modifier.align(Alignment.TopStart))
             ActionsCenter(modifier = Modifier.align(Alignment.Center))
             DescriptionBottom(modifier = Modifier.align(Alignment.BottomEnd))
+
         }
     }
 
@@ -70,7 +84,7 @@ private class HomeComponents(val ctx: Context, val homeViewModel: HomeViewModel)
                 ButtonDate(title = res.getString(R.string.home_button1),
                     value = articleGetRequest!!.startDate,
                     action = {
-                        homeViewModel.setArticleGetRequest(startDate = "11111")
+                        controller.showCalendar(calendar = calendar, startDate = true)
                     })
 
                 Spacer(modifier = Modifier.padding(end = 40.dp))
@@ -78,7 +92,7 @@ private class HomeComponents(val ctx: Context, val homeViewModel: HomeViewModel)
                 ButtonDate(title = res.getString(R.string.home_button2),
                     value = articleGetRequest!!.endDate,
                     action = {
-                        homeViewModel.setArticleGetRequest(endDate = "22222")
+                        controller.showCalendar(calendar = calendar)
                     })
             }
 
