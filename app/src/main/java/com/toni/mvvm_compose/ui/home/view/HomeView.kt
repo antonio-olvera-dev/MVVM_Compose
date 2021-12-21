@@ -1,5 +1,3 @@
-package com.toni.mvvm_compose.ui.home.view
-
 import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.Image
@@ -8,6 +6,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
@@ -15,15 +15,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.toni.mvvm_compose.R
 import com.toni.mvvm_compose.shared.helpers.ResourcesHelper
+import com.toni.mvvm_compose.ui.home.viewModel.HomeViewModel
 
 @Composable
-fun HomeView(ctx: Context) {
-    HomeComponents(ctx = ctx).Body()
+fun HomeView(ctx: Context, homeViewModel: HomeViewModel) {
+    HomeComponents(ctx = ctx, homeViewModel = homeViewModel).Body()
 }
 
-private class HomeComponents(val ctx: Context) {
+private class HomeComponents(val ctx: Context, val homeViewModel: HomeViewModel) {
 
-    val res = ResourcesHelper(ctx = ctx)
+    private val res = ResourcesHelper(ctx = ctx)
 
     @Composable
     fun Body() {
@@ -51,6 +52,8 @@ private class HomeComponents(val ctx: Context) {
     @Composable
     private fun ActionsCenter(modifier: Modifier) {
 
+        val articleGetRequest by homeViewModel.articleGetRequest.observeAsState()
+
         Column(
             modifier = modifier,
             verticalArrangement = Arrangement.Center,
@@ -65,23 +68,24 @@ private class HomeComponents(val ctx: Context) {
             ) {
 
                 ButtonDate(title = res.getString(R.string.home_button1),
-                    value = "1995-06-19",
+                    value = articleGetRequest!!.startDate,
                     action = {
-                        Log.i("11111", "1111")
+                        homeViewModel.setArticleGetRequest(startDate = "11111")
                     })
 
                 Spacer(modifier = Modifier.padding(end = 40.dp))
 
                 ButtonDate(title = res.getString(R.string.home_button2),
-                    value = "1995-07-19",
+                    value = articleGetRequest!!.endDate,
                     action = {
-                        Log.i("22222", "2222")
+                        homeViewModel.setArticleGetRequest(endDate = "22222")
                     })
             }
 
             ImageIcon(
                 action = {
-                    Log.i("3333", "3333")
+                    homeViewModel.setArticleGetRequest(startDate = "-1-1-1-1-1",
+                        endDate = "-2-2-2-2-2")
                 }
             )
         }
@@ -133,3 +137,4 @@ private class HomeComponents(val ctx: Context) {
     }
 
 }
+
