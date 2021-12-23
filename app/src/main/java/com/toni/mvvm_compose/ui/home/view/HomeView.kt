@@ -1,7 +1,5 @@
 import android.app.DatePickerDialog
 import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -21,13 +19,13 @@ import com.toni.mvvm_compose.ui.home.controler.HomeController
 import com.toni.mvvm_compose.ui.home.viewModel.HomeViewModel
 
 
-@RequiresApi(Build.VERSION_CODES.N)
+
 @Composable
 fun HomeView(ctx: Context, homeViewModel: HomeViewModel) {
     HomeComponents(ctx = ctx, homeViewModel = homeViewModel).Body()
 }
 
-@RequiresApi(Build.VERSION_CODES.N)
+
 private class HomeComponents(val ctx: Context, val homeViewModel: HomeViewModel) {
 
     private val res = ResourcesHelper(ctx = ctx)

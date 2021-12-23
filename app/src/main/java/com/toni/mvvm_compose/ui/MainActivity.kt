@@ -1,12 +1,10 @@
 package com.toni.mvvm_compose.ui
 
 import HomeView
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
@@ -23,7 +21,6 @@ class MainActivity : ComponentActivity() {
 
     private val homeViewModel: HomeViewModel by viewModels()
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -31,7 +28,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
+
     @Composable
     private fun MainView() {
         MVVM_ComposeTheme {
@@ -53,7 +50,6 @@ class MainActivity : ComponentActivity() {
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.N)
     @Preview(showBackground = true)
     @Composable
     fun DefaultPreview() {
