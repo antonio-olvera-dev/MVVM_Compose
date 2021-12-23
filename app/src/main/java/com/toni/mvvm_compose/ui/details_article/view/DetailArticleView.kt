@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.toni.mvvm_compose.data.article.models.ArticleGetResponse
 import com.toni.mvvm_compose.shared.Navigate
 
 
@@ -21,11 +22,14 @@ fun DetailsArticleView(ctx: Context) {
 
 private class DetailsArticleComponents(val ctx: Context) {
 
+
+    val article: ArticleGetResponse = Navigate.Bundles.DetailsArticle.articleGetResponse!!
+
     @Composable
     fun Body() {
 
         Column(Modifier.fillMaxSize()) {
-            Text(text = "DetailsArticleView")
+            Text(text = "${article.explanation}")
             Spacer(modifier = Modifier.padding(bottom = 20.dp))
             Button(onClick = {
                 Navigate.toHome()

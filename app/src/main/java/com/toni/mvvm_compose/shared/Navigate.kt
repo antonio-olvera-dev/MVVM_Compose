@@ -3,6 +3,7 @@ package com.toni.mvvm_compose.shared
 import android.annotation.SuppressLint
 import androidx.navigation.NavHostController
 import com.toni.mvvm_compose.data.article.models.ArticleGetRequest
+import com.toni.mvvm_compose.data.article.models.ArticleGetResponse
 
 object Navigate {
 
@@ -20,7 +21,8 @@ object Navigate {
         navController.navigate("${Routes.DateList}")
     }
 
-    fun toDetailsArticle() {
+    fun toDetailsArticle(articleGetResponse: ArticleGetResponse) {
+        Bundles.DetailsArticle.articleGetResponse = articleGetResponse
         navController.navigate("${Routes.DetailsArticle}")
     }
 
@@ -33,6 +35,10 @@ object Navigate {
     object Bundles {
         object DateList {
             var articleGetRequest: ArticleGetRequest? = null
+        }
+
+        object DetailsArticle {
+            var articleGetResponse: ArticleGetResponse? = null
         }
     }
 
