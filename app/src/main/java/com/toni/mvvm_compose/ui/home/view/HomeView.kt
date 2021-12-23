@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.toni.mvvm_compose.R
+import com.toni.mvvm_compose.shared.Navigate
 import com.toni.mvvm_compose.shared.helpers.ResourcesHelper
 import com.toni.mvvm_compose.ui.home.controler.HomeController
 import com.toni.mvvm_compose.ui.home.viewModel.HomeViewModel
@@ -22,6 +23,7 @@ import com.toni.mvvm_compose.ui.home.viewModel.HomeViewModel
 
 @Composable
 fun HomeView(ctx: Context, homeViewModel: HomeViewModel) {
+
     HomeComponents(ctx = ctx, homeViewModel = homeViewModel).Body()
 }
 
@@ -30,10 +32,9 @@ private class HomeComponents(val ctx: Context, val homeViewModel: HomeViewModel)
 
     private val res = ResourcesHelper(ctx = ctx)
     private var controller: HomeController = HomeController()
-    private var calendar: DatePickerDialog
+    private var calendar: DatePickerDialog = controller.getDatePickerDialog(ctx, homeViewModel.articleGetRequest.value!!)
 
     init {
-        calendar = controller.getDatePickerDialog(ctx, homeViewModel.articleGetRequest.value!!)
         controller.launchDateListener(calendar = calendar, homeViewModel = homeViewModel)
     }
 
@@ -96,8 +97,7 @@ private class HomeComponents(val ctx: Context, val homeViewModel: HomeViewModel)
 
             ImageIcon(
                 action = {
-                    homeViewModel.setArticleGetRequest(startDate = "-1-1-1-1-1",
-                        endDate = "-2-2-2-2-2")
+                    Navigate.toDateList()
                 }
             )
         }
