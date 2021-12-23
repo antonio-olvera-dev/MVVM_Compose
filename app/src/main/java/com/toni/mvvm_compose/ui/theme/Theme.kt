@@ -13,8 +13,8 @@ private val DarkColorPalette = darkColors(
     primary = Purple200,
     primaryVariant = White,
     secondary = Teal200,
-    background = White,
-    onBackground = Black
+    background = Black,
+    onBackground = White,
 )
 
 @SuppressLint("ConflictingOnColor")
@@ -22,15 +22,16 @@ private val LightColorPalette = lightColors(
     primary = Purple500,
     primaryVariant = Black,
     secondary = Teal200,
-    background = Black,
-    onBackground = White,
+    background = White,
+    onBackground = Black
+
 
 )
 
 @Composable
 fun MVVM_ComposeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
+    content: @Composable() () -> Unit,
 ) {
     val colors = if (darkTheme) {
         DarkColorPalette
