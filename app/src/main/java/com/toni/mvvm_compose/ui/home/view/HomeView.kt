@@ -20,7 +20,6 @@ import com.toni.mvvm_compose.ui.home.controler.HomeController
 import com.toni.mvvm_compose.ui.home.viewModel.HomeViewModel
 
 
-
 @Composable
 fun HomeView(ctx: Context, homeViewModel: HomeViewModel) {
 
@@ -32,7 +31,8 @@ private class HomeComponents(val ctx: Context, val homeViewModel: HomeViewModel)
 
     private val res = ResourcesHelper(ctx = ctx)
     private var controller: HomeController = HomeController()
-    private var calendar: DatePickerDialog = controller.getDatePickerDialog(ctx, homeViewModel.articleGetRequest.value!!)
+    private var calendar: DatePickerDialog =
+        controller.getDatePickerDialog(ctx, homeViewModel.articleGetRequest.value!!)
 
     init {
         controller.launchDateListener(calendar = calendar, homeViewModel = homeViewModel)
@@ -97,7 +97,9 @@ private class HomeComponents(val ctx: Context, val homeViewModel: HomeViewModel)
 
             ImageIcon(
                 action = {
-                    Navigate.toDateList()
+                    if (homeViewModel.articleGetRequest.value != null)
+                        if (homeViewModel.articleGetRequest.value?.endDate!!.isNotBlank() && homeViewModel.articleGetRequest.value?.startDate!!.isNotBlank())
+                            Navigate.toDateList(homeViewModel.articleGetRequest.value!!)
                 }
             )
         }

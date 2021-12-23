@@ -24,7 +24,7 @@ private class DateListComponents(val ctx: Context, val dateListViewModel: DateLi
     @Composable
     fun Body() {
         Column(Modifier.fillMaxSize()) {
-            Text(text = "DateListView")
+            Text(text = "${Navigate.Bundles.DateList.articleGetRequest}")
             Spacer(modifier = Modifier.padding(bottom = 20.dp))
             Button(onClick = {
                 Navigate.toDetailsArticle()
